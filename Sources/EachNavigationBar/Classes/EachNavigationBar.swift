@@ -302,7 +302,11 @@ extension EachNavigationBar {
         
         if automaticallyAdjustsPosition {
             frame = navigationBar.frame
-            frame.origin.y = barMinY
+            //frame.origin.y = barMinY
+            //针对模态弹出的页面 不去增加其状态栏高度
+            if viewController?.presentingViewController == nil{
+                frame.origin.y = barMinY
+            }
         } else {
             frame.size = navigationBar.frame.size
         }
